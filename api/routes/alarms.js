@@ -112,7 +112,7 @@ ______ _   _ _   _ _____ _____ _____ _____ _   _  _____
 //CREATE ALARM
 async function createAlarmRule(newAlarm) {
 
-    const url = "http://localhost:8085/api/v4/rules";
+    const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules";
 
     // topicExample = userid/did/temp  //msgExample = {value: 20}
     const topic = newAlarm.userId + "/" + newAlarm.dId + "/" + newAlarm.variable + "/sdata";
@@ -155,7 +155,7 @@ async function createAlarmRule(newAlarm) {
             createTime: Date.now()
         });
 
-        const url = "http://localhost:8085/api/v4/rules/" + mongoRule.emqxRuleId;
+        const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + mongoRule.emqxRuleId;
 
         const payload_templ = '{"userId":"' + newAlarm.userId + '","dId":"' + newAlarm.dId + '","deviceName":"' + newAlarm.deviceName + '","payload":${payload},"topic":"${topic}","emqxRuleId":"' + mongoRule.emqxRuleId + '","value":' + newAlarm.value + ',"condition":"' + newAlarm.condition + '","variable":"' + newAlarm.variable + '","variableFullName":"' + newAlarm.variableFullName + '","triggerTime":' + newAlarm.triggerTime + '}';
         
@@ -174,7 +174,7 @@ async function createAlarmRule(newAlarm) {
 //UPDATE ALARM STATUS
 async function updateAlarmRuleStatus(emqxRuleId, status) {
 
-    const url = "http://localhost:8085/api/v4/rules/" + emqxRuleId;
+    const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + emqxRuleId;
 
     const newRule = {
         enabled: status
@@ -198,7 +198,7 @@ async function updateAlarmRuleStatus(emqxRuleId, status) {
 async function deleteAlarmRule(emqxRuleId) {
     try {
 
-        const url = "http://localhost:8085/api/v4/rules/" + emqxRuleId;
+        const url = "http://"+process.env.EMQX_NODE_HOST+":8085/api/v4/rules/" + emqxRuleId;
 
         const emqxRule = await axios.delete(url, auth);
 

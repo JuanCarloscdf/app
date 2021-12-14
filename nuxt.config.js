@@ -78,7 +78,9 @@ export default {
     mqtt_port: process.env.MQTT_PORT
   },
     
-  
+  serverMiddleware: {
+    '/api': '~/api'
+  },
   /*
   ** Build configuration
   */
