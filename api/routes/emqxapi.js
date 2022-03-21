@@ -17,10 +17,7 @@ global.alarmResource = null;
 // ******** EMQX RESOURCES MANAGER ********
 // ****************************************
 
-/* This manager corroborates that there are 2 resources,
-If there are none, then create them.
-If there are one or more than two, issue a warning.
-To manually delete the resources and restart node */
+
 
 /* Este administrador corrobora que existan 2 recursos,
 Si no hay ninguno, entonces los crea.

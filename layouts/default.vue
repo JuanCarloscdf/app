@@ -1,17 +1,19 @@
 <template>
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <notifications></notifications>
-
+    
     <side-bar
-      :background-color="sidebarBackground"
-      short-title="GL"
-      title="IoTicos GL"
+     :background-color="sidebarBackground" 
+      short-title="UM"
+      title="UMSA IOT"
     >
+ 
+     <div class="text-center   && text-white">BARRA DE NAVEGACIÒN</div>
       <template slot-scope="props" slot="links">
         <sidebar-item
           :link="{
-            name: 'Dashboard',
-            icon: 'tim-icons icon-chart-pie-36',
+            name: 'TABLERO',
+            icon: 'tim-icons icon-laptop',
             path: '/dashboard'
           }"
         >
@@ -19,8 +21,8 @@
 
         <sidebar-item
           :link="{
-            name: 'Devices',
-            icon: 'tim-icons icon-chart-pie-36',
+            name: 'DISPOSITIVOS',
+            icon: 'tim-icons icon-components',
             path: '/devices'
           }"
         >
@@ -28,8 +30,8 @@
 
         <sidebar-item
           :link="{
-            name: 'Alarms',
-            icon: 'tim-icons icon-chart-pie-36',
+            name: 'ALARMAS',
+            icon: 'tim-icons icon-alert-circle-exc',
             path: '/alarms'
           }"
         >
@@ -37,9 +39,25 @@
 
         <sidebar-item
           :link="{
-            name: 'Templates',
-            icon: 'tim-icons icon-chart-pie-36',
+            name: 'PLANTILLA',
+            icon: 'tim-icons icon-puzzle-10' ,
             path: '/templates'
+          }"
+        >
+        </sidebar-item>
+<!--          <sidebar-item
+          :link="{
+            name: 'maps',
+            icon: 'tim-icons icon-settings',
+            path: '/maps'
+          }"
+        >
+        </sidebar-item> -->
+        <sidebar-item
+          :link="{
+            name: 'Lista de Alarmas',
+            icon: 'tim-icons icon-bullet-list-67',
+            path: '/AlarmList'
           }"
         >
         </sidebar-item>
@@ -47,7 +65,7 @@
     </side-bar>
 
     <!--Share plugin (for demo purposes). You can remove it if don't plan on using it-->
-    <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share>
+   <!--  <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share> -->
 
     <div class="main-panel" :data="sidebarBackground">
       <dashboard-navbar></dashboard-navbar>

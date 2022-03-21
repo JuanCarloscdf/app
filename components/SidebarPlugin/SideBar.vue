@@ -2,12 +2,9 @@
   <div class="sidebar" :data="backgroundColor">
     <div class="sidebar-wrapper" ref="sidebarScrollArea">
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <!--<a href="http://www.creative-tim.com" class="simple-text logo-mini">
           <img :src="logo" alt="app-logo" />
-        </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          {{ title }}
-        </a>
+        </a>-->
       </div>
       <slot></slot>
       <ul class="nav">
@@ -39,7 +36,7 @@ export default {
     },
     logo: {
       type: String,
-      default: 'http://demos.creative-tim.com/nuxt-black-dashboard-pro/img/icon-nuxt.svg',
+  
       description: 'Sidebar app logo'
     },
     backgroundColor: {

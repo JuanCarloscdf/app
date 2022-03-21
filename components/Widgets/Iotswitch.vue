@@ -82,9 +82,7 @@
                 };
 
                 $nuxt.$emit('mqtt-sender', toSend);
-
             }
-
 
         }
     };

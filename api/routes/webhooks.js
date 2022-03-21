@@ -178,10 +178,7 @@ router.put("/notifications", checkAuth, async (req, res) => {
 
     const notificationId = req.body.notifId;
 
-    await Notification.updateOne(
-      { userId: userId, _id: notificationId },
-      { readed: true }
-    );
+    await Notification.updateOne({ userId: userId, _id: notificationId },{ readed: true });
 
     const toSend = {
       status: "success"
@@ -316,7 +313,7 @@ function sendMqttNotif(notif) {
 //GET ALL NOT READED NOTIFICATIONS
 async function getNotifications(userId) {
   try {
-    const res = await Notification.find({ userId: userId, readed: false });
+    const res = await Notification.find({ userId: userId});
     return res;
   } catch (error) {
     console.log(error);

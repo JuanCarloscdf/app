@@ -6,7 +6,7 @@
         <card v-if="$store.state.devices.length > 0">
           <div slot="header">
             <h4 class="card-title">
-              Create new Alarm Rule {{ selectedWidgetIndex }}
+              Crear nueva regla 
             </h4>
           </div>
 
@@ -34,7 +34,7 @@
               <el-select
                 required
                 class="select-warning"
-                placeholder="Condition"
+                placeholder="Condicion"
                 v-model="newRule.condition"
                 style="margin-top: 25px;"
               >
@@ -49,7 +49,7 @@
 
             <div class="col-3">
               <base-input
-                label="Value"
+                label="Valor umbral"
                 v-model="newRule.value"
                 type="number"
               ></base-input>
@@ -57,7 +57,7 @@
 
             <div class="col-3">
               <base-input
-                label="Trigger Time"
+                label="periodo"
                 v-model="newRule.triggerTime"
                 type="number"
               ></base-input>
@@ -71,18 +71,19 @@
               <base-button
                 @click="createNewRule()"
                 native-type="submit"
-                type="primary"
+                type="primary-dark-color"
                 class="mb-3"
+                
                 size="lg"
                 :disabled="$store.state.devices.length == 0"
               >
-                Add Alarm Rule
+                Nueva alarma
               </base-button>
             </div>
           </div>
         </card>
         <card v-else>
-          You need to select a device to create an Alarm
+          debe crear una alarma
         </card>
       </div>
     </div>
@@ -92,7 +93,7 @@
       <div class="col-sm-12">
         <card>
           <div slot="header">
-            <h4 class="card-title">Alarm Rules</h4>
+            <h4 class="card-title">Reglas de alarmas</h4>
           </div>
 
           <el-table
@@ -107,26 +108,29 @@
 
             <el-table-column
               prop="variableFullName"
-              label="Var Name"
+              label="variable"
+              align="center"
             ></el-table-column>
 
-            <el-table-column prop="variable" label="Var"></el-table-column>
+            <el-table-column prop="variable" label="Variable"></el-table-column>
 
             <el-table-column
               prop="condition"
-              label="Condition"
+              label="Condiciòn"
+              align="center"
             ></el-table-column>
 
-            <el-table-column prop="value" label="Value"></el-table-column>
+            <el-table-column prop="value" label="umbral" align="center"></el-table-column>
 
             <el-table-column
               prop="triggerTime"
-              label="Trigger Time"
+              label="periodo"
+              align="center"
             ></el-table-column>
 
-            <el-table-column prop="counter" label="Matches"></el-table-column>
+            <el-table-column prop="counter" label="contador" align="center"></el-table-column>
 
-            <el-table-column min-width="110" header-align="right" align="right" label="Actions">
+            <el-table-column min-width="110" header-align="right" align="right" label="borrar/bloquear">
               <div
                 slot-scope="{ row, $index }"
                 class="text-right table-actions"
@@ -225,7 +229,7 @@ export default {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Alarm Rule was deleted"
+              message: "la alarma fue eliminada"
             });
             this.$store.dispatch("getDevices");
             return;
@@ -262,7 +266,7 @@ export default {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Alarm Rule was updated"
+              message: "Alarma actualizada"
             });
 
             this.$store.dispatch("getDevices");
@@ -286,7 +290,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Variable must be selected"
+          message: " seleccione variable"
         });
         return;
       }
@@ -295,7 +299,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Condition must be selected"
+          message: " selecione una condicion"
         });
         return;
       }
@@ -304,7 +308,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Value is empty"
+          message: " determine un valor humbral"
         });
         return;
       }
@@ -313,7 +317,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Trigger Time is empty"
+          message: " determine un periodo de espera"
         });
         return;
       }
@@ -349,7 +353,7 @@ export default {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Alarm Rule was added"
+              message: "Alarma creada"
             });
 
             this.$store.dispatch("getDevices");

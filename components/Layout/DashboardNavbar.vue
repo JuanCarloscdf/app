@@ -16,7 +16,7 @@
           <span class="navbar-toggler-bar bar3"></span>
         </button>
       </div>
-      <a class="navbar-brand ml-xl-3 ml-5" href="#pablo">{{ routeName }}</a>
+      <a class="navbar-brand ml-xl-3 ml-5" href="#pablo">IoT UMSA</a>
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
@@ -46,20 +46,24 @@
         <template slot="title">
           <div v-if="$store.state.notifications.length > 0" class="notification d-none d-lg-block d-xl-block"></div>
           <i class="tim-icons icon-sound-wave"></i>
-          <p class="d-lg-none">New Notifications</p>
+          <p class="d-lg-none">Notificaciones</p>
         </template>
 
-        <li @click="notificationReaded(notification._id)" v-for="notification in $store.state.notifications" class="nav-link">
-          <a href="#" class="nav-item dropdown-item">
+        <li @click="notificationReaded(notification._id)" v-for="notification in $store.state.notifications" class="nav-link" :key="notification._id">
+          <div v-if="notification.readed == false">
+             <a href="#" class="nav-item dropdown-item">
             <b style="color:orangered">{{ unixToDate(notification.time)}}</b>
               <div style="margin-left:50px">
-                <b>Device: </b> {{notification.deviceName}} <br>
+                <b>Dispositivo: </b> {{notification.deviceName}} <br>
                 <b>Variable: </b> {{notification.variableFullName}} <br>
-                <b>Condition: </b> {{notification.condition}} <br>
-                <b>Limit: </b> {{notification.value}} <br>
-                <b>Value: </b> {{notification.payload.value}}
+                <b>Condicion: </b> {{notification.condition}} <br>
+                <b>Umbral: </b> {{notification.value}} <br>
+                <b>Valor: </b> {{notification.payload.value}}
               </div>    
           </a>
+
+          </div>
+         
         </li>
 
       </base-dropdown>
@@ -73,16 +77,15 @@
         menu-classes="dropdown-navbar"
       >
         <template slot="title">
-          <div class="photo"><img src="img/mike.jpg" /></div>
+           <i class="tim-icons icon-single-02"></i>
+          <!--<div class="photo"><img src="tim-icons icon-single-02" /></div>-->
           <b class="caret d-none d-lg-block d-xl-block"></b>
           <p @click="logOut()" class="d-lg-none">Log out</p>
         </template>
-        <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Profile</a>
-        </li>
-        <li class="nav-link">
+  
+         <!--     <li class="nav-link">
           <a href="#" class="nav-item dropdown-item">Settings</a>
-        </li>
+        </li> -->
         <div class="dropdown-divider"></div>
         <li class="nav-link">
           <a @click="logOut()" href="#" class="nav-item dropdown-item">Log out</a>

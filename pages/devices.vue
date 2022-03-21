@@ -2,18 +2,18 @@
   <div>
     <!-- FORM ADD DEVICE -->
     <div class="row">
-      <Json :value="$store.state.selectedDevice"></Json>
+      <!-- <Json :value="$store.state.selectedDevice"></Json> -->
       <card>
         <div slot="header">
-          <h4 class="card-title">Add new Device</h4>
+          <h4 class="card-title">Nuevo dispositivo</h4>
         </div>
 
         <div class="row">
           <div class="col-4">
             <base-input
-              label="Device Name"
+              label="Nombre de dispositivo"
               type="text"
-              placeholder="Ex: Home, Office..."
+              placeholder="sp32_sala"
               v-model="newDevice.name"
             >
             </base-input>
@@ -21,9 +21,9 @@
 
           <div class="col-4">
             <base-input
-              label="Device Id"
+              label="Identificador dispositivo"
               type="text"
-              placeholder="Ex: 7777-8888"
+              placeholder="98521321"
               v-model="newDevice.dId"
             >
             </base-input>
@@ -31,12 +31,12 @@
 
           <div class="col-4">
             <slot name="label">
-              <label> Template </label>
+              <label> Plantilla </label>
             </slot>
 
             <el-select
               v-model="selectedIndexTemplate"
-              placeholder="Select Template"
+              placeholder="Seleccioné su plantilla"
               class="select-primary"
               style="width:100%"
             >
@@ -55,10 +55,10 @@
           <div class="col-12">
             <base-button
               @click="createNewDevice()"
-              type="primary"
+              type="primary-dark-color"
               class="mb-3"
               size="lg"
-              >Add</base-button
+              >Añadir</base-button
             >
           </div>
         </div>
@@ -69,7 +69,7 @@
     <div class="row">
       <card>
         <div slot="header">
-          <h4 class="card-title">Devices</h4>
+          <h4 class="card-title">Dispositivos</h4>
         </div>
 
         <el-table :data="$store.state.devices">
@@ -79,18 +79,18 @@
             </div>
           </el-table-column>
 
-          <el-table-column prop="name" label="Name"></el-table-column>
+          <el-table-column prop="name" label="Nombre"></el-table-column>
 
-          <el-table-column prop="dId" label="Device Id"></el-table-column>
+          <el-table-column prop="dId" label="Identificador"></el-table-column>
 
-          <el-table-column prop="password" label="Password"></el-table-column>
+          <el-table-column prop="password" label="Contraseña"></el-table-column>
 
           <el-table-column
             prop="templateName"
-            label="Template"
+            label="Plantilla"
           ></el-table-column>
 
-          <el-table-column label="Actions">
+          <el-table-column label="Borra o bloquear">
             <div slot-scope="{ row, $index }">
               <el-tooltip
                 content="Saver Status Indicator"
@@ -136,8 +136,8 @@
         </el-table>
       </card>
     </div>
-    <Json :value="$store.state.selectedDevice"></Json>
-    <Json :value="$store.state.devices"></Json>
+    <Json :value="$store.state.selectedDevice"></Json> 
+    <Json :value="$store.state.devices"></Json> 
   </div>
 </template>
 
@@ -198,7 +198,7 @@ export default {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: " Device Saver Status Updated"
+              message: "Regla almacenamiento del dispositivo actualizado"
             });
 
           }
@@ -210,7 +210,7 @@ export default {
           this.$notify({
             type: "danger",
             icon: "tim-icons icon-alert-circle-exc",
-            message: " Error updating saver rule status"
+            message: " error actualizando la regla del dispositivo"
           });
           return;
         });
@@ -233,7 +233,7 @@ export default {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: device.name + " deleted!"
+              message: device.name + " borrado!"
             });
           }
 
@@ -246,7 +246,7 @@ export default {
           this.$notify({
             type: "danger",
             icon: "tim-icons icon-alert-circle-exc",
-            message: " Error deleting " + device.name
+            message: " Error borrando " + device.name
           });
           return;
         });
@@ -257,7 +257,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Device Name is Empty :("
+          message: " Nombre de dispositivo no asignado :("
         });
         return;
       }
@@ -266,7 +266,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Device ID is Empty :("
+          message: " Identificador no asignado:("
         });
         return;
       }
@@ -275,7 +275,7 @@ export default {
         this.$notify({
           type: "warning",
           icon: "tim-icons icon-alert-circle-exc",
-          message: " Tempalte must be selected"
+          message: "Por favor seleccione una plantilla"
         });
         return;
       }
@@ -311,7 +311,7 @@ export default {
             this.$notify({
               type: "success",
               icon: "tim-icons icon-check-2",
-              message: "Success! Device was added"
+              message: " Dispositivo añadido correctamente"
             });
 
             return;
@@ -326,7 +326,7 @@ export default {
               type: "warning",
               icon: "tim-icons icon-alert-circle-exc",
               message:
-                "The device is already registered in the system. Try another device"
+                "Dispositivo ya creado"
             });
             return;
           } else {
@@ -355,7 +355,7 @@ export default {
         this.$notify({
           type: "danger",
           icon: "tim-icons icon-alert-circle-exc",
-          message: "Error getting templates..."
+          message: "Error obteniendo las plantillas..."
         });
         console.log(error);
         return;

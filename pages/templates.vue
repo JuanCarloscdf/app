@@ -5,7 +5,7 @@
     <div class="row">
       <card>
         <div slot="header">
-          <h4 class="card-title">Widgets {{iotIndicatorConfig.column}}</h4>
+          <h4 class="card-title">Herramientas </h4>
         </div>
 
         <div class="row">
@@ -15,24 +15,24 @@
             <el-select
               v-model="widgetType"
               class="select-success"
-              placeholder="Select Widget"
+              placeholder="Seleccione una herramienta"
               style="width: 100%;"
             >
               <el-option
                 class="text-dark"
                 value="numberchart"
-                label="Number Chart INPUT <-"
+                label="Grafica INPUT <-"
               >
               </el-option>
               <el-option
                 class="text-dark"
                 value="indicator"
-                label="Boolean Indicator INPUT <-"
+                label="Estado de variable INPUT <-"
               >
               </el-option>
               <el-option
                 class="text-dark"
-                value="map"
+                value="mapa"
                 label="Map INPUT <-"
               ></el-option>
               <el-option
@@ -43,7 +43,7 @@
               <el-option
                 class="text-dark"
                 value="button"
-                label="Button OUTPUT ->"
+                label="Boton OUTPUT ->"
               ></el-option>
             </el-select>
 
@@ -54,24 +54,24 @@
             <div v-if="widgetType == 'numberchart'">
               <base-input
                 v-model="ncConfig.variableFullName"
-                label="Var Name"
+                label="Nombre de la variable"
                 type="text"
               >
               </base-input>
 
-              <base-input v-model="ncConfig.unit" label="Unit" type="text">
+              <base-input v-model="ncConfig.unit" label="Unidad" type="text">
               </base-input>
 
               <base-input
                 v-model.number="ncConfig.decimalPlaces"
-                label="Decimal Places"
+                label="Numero de decimales"
                 type="number"
               >
               </base-input>
 
               <base-input
                 v-model="ncConfig.icon"
-                label="Icon"
+                label="Icono"
                 type="text"
               ></base-input>
 
@@ -79,7 +79,7 @@
 
               <base-input
                 v-model.number="ncConfig.variableSendFreq"
-                label="Send Freq"
+                label="Frecuencia de envio de datos(s)"
                 type="number"
               ></base-input>
 
@@ -87,7 +87,7 @@
 
               <base-input
                 v-model.number="ncConfig.chartTimeAgo"
-                label="Chart Back Time (mins)"
+                label="Tiempo de observaciòn (min)"
                 type="number"
               ></base-input>
 
@@ -188,14 +188,14 @@
             <div v-if="widgetType == 'switch'">
               <base-input
                 v-model="iotSwitchConfig.variableFullName"
-                label="Var Name"
+                label="Nombre de Variable"
                 type="text"
               >
               </base-input>
 
               <base-input
                 v-model="iotSwitchConfig.icon"
-                label="Icon"
+                label="Icono"
                 type="text"
               ></base-input>
 
@@ -296,28 +296,28 @@
             <div v-if="widgetType == 'button'">
               <base-input
                 v-model="configButton.variableFullName"
-                label="Var Name"
+                label="Nombre de variable"
                 type="text"
               >
               </base-input>
 
               <base-input
                 v-model="configButton.message"
-                label="Message to send"
+                label="Mensaje a enviar"
                 type="text"
               >
               </base-input>
 
               <base-input
                 v-model="configButton.text"
-                label="Button Text"
+                label="Texto del boton"
                 type="text"
               >
               </base-input>
 
               <base-input
                 v-model="configButton.icon"
-                label="Icon"
+                label="Icono"
                 type="text"
               ></base-input>
 
@@ -414,19 +414,60 @@
               <br /><br />
             </div>
 
+            <!-- FORM MAP TYPE -->
+            <div v-if="widgetType == 'mapa'">
+              <base-input
+                v-model="iotMap.variableFullName"
+                label="Variable"
+                type="text"
+              >
+              </base-input>
+
+               <base-input
+                v-model="iotMap.variableSendFreq"
+                label="Frecuencia de envio"
+                type="text"
+              ></base-input>
+              <h5>tamaño</h5>
+              <el-select
+                v-model="iotMap.column"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-dark"
+                  value="col-3"
+                  label="pequeño"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-6"
+                  label="mediano"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-12"
+                  label="grande"
+                ></el-option>
+              </el-select>
+
+              <br /><br />
+            </div>
+
             <!-- FORM INDICATOR TYPE -->
             <div v-if="widgetType == 'indicator'">
 
               <base-input
                 v-model="iotIndicatorConfig.variableFullName"
-                label="Var Name"
+                label="Variable"
                 type="text"
               >
               </base-input>
 
               <base-input
                 v-model="iotIndicatorConfig.icon"
-                label="Icon"
+                label="Icono"
                 type="text"
               ></base-input>
 
@@ -434,7 +475,7 @@
 
               <base-input
                 v-model="iotIndicatorConfig.variableSendFreq"
-                label="Send Freq"
+                label="Frecuencia de envio"
                 type="text"
               ></base-input>
 
@@ -550,6 +591,10 @@
               v-if="widgetType == 'indicator'"
               :config="iotIndicatorConfig"
             ></Iotindicator>
+             <Map
+              v-if="widgetType == 'mapa'"
+              :config="iotMap"
+            ></Map>
           </div>
         </div>
 
@@ -558,12 +603,12 @@
           <div class="col-12">
             <base-button
               native-type="submit"
-              type="primary"
+              type="primary-dark-color"
               class="mb-3"
               size="lg"
               @click="addNewWidget()"
             >
-              Add Widget
+              Añadir
             </base-button>
           </div>
         </div>
@@ -603,6 +648,10 @@
           v-if="widget.widget == 'indicator'"
           :config="widget"
         ></Iotindicator>
+        <Map
+          v-if="widgetType == 'mapa'"
+          :config="widget"
+        ></Map>
       </div>
     </div>
 
@@ -610,14 +659,14 @@
     <div class="row" >
       <card>
         <div slot="header">
-          <h4 class="card-title">Save Template</h4>
+          <h4 class="card-title">Guardar plantilla</h4>
         </div>
 
         <div class="row">
           <base-input
             class="col-4"
             v-model="templateName"
-            label="Template Name"
+            label="nombre"
             type="text"
           >
           </base-input>
@@ -625,7 +674,7 @@
           <base-input
             class="col-8"
             v-model="templateDescription"
-            label="Template Description"
+            label="descripciòn"
             type="text"
           >
           </base-input>
@@ -637,13 +686,13 @@
           <div class="col-12">
             <base-button
               native-type="submit"
-              type="primary"
+              type="primary-dark-color"
               class="mb-3 pull-right"
               size="lg"
               @click="saveTemplate()"
               :disabled="widgets.length == 0"
             >
-              Save Template
+              Guardar
             </base-button>
           </div>
         </div>
@@ -654,30 +703,40 @@
     <div class="row">
       <card>
         <div slot="header">
-          <h4 class="card-title">Templates</h4>
+          <h4 class="card-title">Plantillas creadas</h4>
         </div>
 
         <div class="row">
           <el-table :data="templates">
-            <el-table-column min-width="50" label="#" align="center">
+            <el-table-column min-width="50" label="#" align="center" >
               <div class="photo" slot-scope="{ row, $index }">
                 {{ $index + 1 }}
               </div>
             </el-table-column>
 
-            <el-table-column prop="name" label="Name"></el-table-column>
+            <el-table-column prop="name" label="Nombre" width="120"></el-table-column>
 
             <el-table-column
               prop="description"
-              label="Description"
+              label="Descripciòn"
+              
             ></el-table-column>
 
             <el-table-column
               prop="widgets.length"
-              label="Widgets"
+              label="herramientas"
+              align="center"
+   
             ></el-table-column>
+            <el-table-column prop="createdTime" label="fecha de creacion"  >
+              <div slot-scope="{ row, $index }">
+                     {{unixToDate(row.createdTime)}}
+              </div>
+           
+                
+            </el-table-column>
 
-            <el-table-column header-align="right" align="right" label="Actions">
+            <el-table-column header-align="right" align="right" label="eliminar" >
               <div
                 slot-scope="{ row, $index }"
                 class="text-right table-actions"
@@ -705,7 +764,7 @@
       </card>
     </div>
 
-
+    <Json :value="templates"></Json> 
   </div>
 </template>
 
@@ -730,7 +789,7 @@ export default {
       ncConfig: {
         userId: "sampleuserid",
         selectedDevice: {
-          name: "Home",
+          name: "ID de dispositivo",
           dId: "8888"
         },
         variableFullName: "temperature",
@@ -749,7 +808,7 @@ export default {
       iotSwitchConfig: {
         userId: "userid",
         selectedDevice: {
-          name: "Home",
+          name: "ID de dispositivo",
           dId: "8888"
         },
         variableFullName: "Luz",
@@ -763,7 +822,7 @@ export default {
       iotIndicatorConfig: {
         userId: "userid",
         selectedDevice: {
-          name: "Home",
+          name: "ID de dispositivo",
           dId: "8888"
         },
         variableFullName: "temperature",
@@ -778,7 +837,7 @@ export default {
       configButton: {
         userId: "userid",
         selectedDevice: {
-          name: "Home",
+          name: "ID de dispositivo",
           dId: "8888",
           templateName: "Power Sensor",
           templateId: "984237562348756ldksjfh",
@@ -791,7 +850,22 @@ export default {
         column: "col-4",
         widget: "button",
         class: "danger",
-        message: "{'fanstatus': 'stop'}"
+        message: "string"
+      },
+      iotMap: {
+        userId: "userid",
+        selectedDevice: {
+          name: "dId - dispositivo",
+          dId: "8888",
+        },
+        variableFullName: "ubicación",
+        variable: "var1",
+        variableType: "input",
+        variableSendFreq:"20",
+        class:"primary",
+        icon: "fa-sun",
+        column: "col-6",
+        widget: "mapa",
       },
     };
   },
@@ -816,7 +890,7 @@ export default {
         this.$notify({
           type: "danger",
           icon: "tim-icons icon-alert-circle-exc",
-          message: "Error getting templates..."
+          message: "Error obteniendo plantilla..."
         });
         console.log(error);
         return;
@@ -843,7 +917,7 @@ export default {
           this.$notify({
             type: "success",
             icon: "tim-icons icon-alert-circle-exc",
-            message: "Template created!"
+            message: "Plantilla creada correctamente!"
           });
           this.getTemplates();
           this.widgets = [];
@@ -852,7 +926,7 @@ export default {
         this.$notify({
           type: "danger",
           icon: "tim-icons icon-alert-circle-exc",
-          message: "Error creating template..."
+          message: "Error creando plantilla..."
         });
         console.log(error);
         return;
@@ -886,7 +960,7 @@ export default {
           this.$notify({
             type: "success",
             icon: "tim-icons icon-check-2",
-            message: template.name + " was deleted!"
+            message: template.name + " fue eliminado!"
           });
           
           this.getTemplates();
@@ -919,6 +993,10 @@ export default {
         this.iotIndicatorConfig.variable = this.makeid(10);
         this.widgets.push(JSON.parse(JSON.stringify(this.iotIndicatorConfig)));
       }
+      if (this.widgetType == "mapa") {
+        this.iotMap.variable = this.makeid(10);
+        this.widgets.push(JSON.parse(JSON.stringify(this.iotMap)));
+      }
     },
     //Delete Widget
     deleteWidget(index) {
@@ -935,7 +1013,33 @@ export default {
         );
       }
       return result;
-    }
+    },
+        unixToDate(ms) {
+        var d = new Date(parseInt(ms)), 
+          yyyy = d.getFullYear(),
+          mm = ('0' + (d.getMonth() + 1)).slice(-2), // Months are zero based. Add leading 0.
+          dd = ('0' + d.getDate()).slice(-2), // Add leading 0.
+          hh = d.getHours(),
+          h = hh,
+          min = ('0' + d.getMinutes()).slice(-2), // Add leading 0.
+          ampm = 'AM',
+          time;
+
+        if (hh > 12) {
+          h = hh - 12;
+          ampm = 'PM';
+        } else if (hh === 12) {
+          h = 12;
+          ampm = 'PM';
+        } else if (hh == 0) {
+          h = 12;
+        }
+
+        // ie: 2013-02-18, 8:35 AM	
+        time = dd + '/' + mm + '/' + yyyy + ', ' + h + ':' + min + ' ' + ampm;
+
+        return time;
+      },
   }
 };
 </script>
