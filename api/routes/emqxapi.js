@@ -3,6 +3,8 @@ const router = express.Router();
 const axios = require("axios");
 const colors = require("colors");
 
+import EmqxAuthRule from "../models/emqx_auth.js";
+
 const auth = {
   auth: {
     username: "admin",
@@ -148,6 +150,20 @@ async function createResources() {
 //check if superuser exist if not we create one
 global.check_mqtt_superuser = async function checkMqttSuperUser(){
 
+  await EmqxAuthRule.create(
+    {
+      publish: ["#"],
+      subscribe: ["#"],
+      userId: "aaaaaaaaaaa",
+      username: "superuser",
+      password: "superuser",
+      type: "superuser",
+      time: Date.now(),
+      updatedTime: Date.now()
+    }
+  );
+
+  console.log("Mqtt super user created")
   try {
     const superusers = await EmqxAuthRule.find({type:"superuser"});
 
