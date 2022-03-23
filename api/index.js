@@ -32,7 +32,7 @@ module.exports = app;
 
 //listener
 app.listen(process.env.API_PORT, () => {
-  console.log("API server listening on port"+process.env.API_PORT);
+  console.log("API server listening on port "+process.env.API_PORT);
 });
 
 
@@ -71,6 +71,7 @@ mongoose.connect(uri, options).then(
     console.log("✔ Mongo Successfully Connected!".green);
     console.log("*******************************".green);
     console.log("\n");
+
 
     global.check_mqtt_superuser();
   },
