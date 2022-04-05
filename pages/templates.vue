@@ -649,7 +649,7 @@
           :config="widget"
         ></Iotindicator>
         <Map
-          v-if="widgetType == 'mapa'"
+          v-if="widget.widget == 'mapa'"
           :config="widget"
         ></Map>
       </div>
@@ -764,7 +764,7 @@
       </card>
     </div>
 
-    <Json :value="templates"></Json> 
+    <Json :value="widgets"></Json> 
   </div>
 </template>
 
@@ -866,6 +866,7 @@ export default {
         icon: "fa-sun",
         column: "col-6",
         widget: "mapa",
+        demo: true 
       },
     };
   },

@@ -2,7 +2,7 @@
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <notifications></notifications>
     <side-bar
-      :background-color="sidebarBackground"
+      :background-color="green"
       :short-title="$t('sidebar.shortTitle')"
       :title="$t('sidebar.title')"
     >
@@ -232,7 +232,7 @@ export default {
   },
   data() {
     return {
-      sidebarBackground: 'vue' //vue|blue|orange|green|red|primary
+      sidebarBackground: 'green' //vue|blue|orange|green|red|primary
     };
   },
   methods: {

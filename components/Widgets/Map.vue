@@ -10,35 +10,53 @@
                
             </h3>
 
-                     <GmapMap style="width: 100%; height: 400px;"
+        </template>
+        <div class="chart-area" style="height: 300px">
+             <GmapMap style=" height: 100%;"
                         :zoom="10"
                         :center="position"
                         ref="map"
                      > 
                              <GmapMarker
-                                :position= "position"
+                                v-for="(m, index) in markers"
+                                :key="index"
+                                :ref="`marker${index}`"
+                                :position="m.position"
                                 :clickable="true" 
                                 :draggable="false"
+                                :icon="markerOptions" 
                                  >
-                           
                             </GmapMarker> 
-                    </GmapMap>
-                    
+             </GmapMap>
 
-        </template>
+        </div>
 
     </card>
 
 </template>
 
 <script>
+const mapMarker = require('~/assets/images/icon.png');
 export default{
+   
     name:"mapa",
     props:["config"],
     data(){
         return{
-            position:{lat:-12.516811, lng:-68.112460},
-        }; 
+            position:{lat:-13.519920, lng:-68.112460},
+
+            auxPosition:{ position:{lat:-13.519920, lng:-68.112460}},
+            markers:[
+                {position:{lat:-13.519920, lng:-68.112460}},
+                
+            ],
+            markerOptions: {
+                url: mapMarker,
+                size: {width: 10, height: 10, f: 'px', b: 'px',},
+                scaledSize: {width: 10, height: 10, f: 'px', b: 'px',},
+             },
+        };
+         
             
     },
 
@@ -54,10 +72,14 @@ beforeDestroy(){
 },
 methods:{
     processReceivedDatas(data){
+        
         try {
         console.log("recibiendo ubicacion");
         console.log(data);
         this.position=data;
+        this.auxPosition.position=data;
+        const { ...auxCopy} = this.auxPosition;
+        this.markers.push(auxCopy);
         } catch (error) {
         console.log(error);    
         }

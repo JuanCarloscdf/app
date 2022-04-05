@@ -63,8 +63,9 @@
         darkMode: true,
         isOpen: false,
         sidebarColors: [
-          { color: 'primary', active: false, value: 'primary' },
-          { color: 'vue', active: true, value: 'vue' },
+          { color: 'vue', active: false, value: 'vue' },
+          { color: 'primary', active: true, value: 'primary' },
+          
           { color: 'info', active: false, value: 'blue' }
         ]
       };
