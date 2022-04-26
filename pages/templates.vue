@@ -764,7 +764,7 @@
       </card>
     </div>
 
-    <Json :value="widgets"></Json> 
+    <!-- <Json :value="widgets"></Json>  -->
   </div>
 </template>
 
