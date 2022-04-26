@@ -6,15 +6,21 @@
      :background-color="sidebarBackground" 
       short-title="UM"
       title="UMSA IOT"
+      shadow
     >
  
-     <div class="text-center   && text-white">BARRA DE NAVEGACIÒN</div>
+     <div class="text-center">
+       <br>
+       <FONT FACE="arial" COLOR="black" SIZE=3>BARRA DE NAVEGACIÒN</font>
+     </div>
+
       <template slot-scope="props" slot="links">
         <sidebar-item
           :link="{
             name: 'TABLERO',
             icon: 'tim-icons icon-laptop',
-            path: '/dashboard'
+            path: '/dashboard',
+            style: ''
           }"
         >
         </sidebar-item>
@@ -120,7 +126,7 @@ export default {
   },
   data() {
     return {
-      sidebarBackground: "primary", //vue|blue|orange|green|red|primary
+      sidebarBackground: "vue", //vue|blue|orange|green|red|primary
       client: null,
       options: {
         host: process.env.MQTT_HOST,   /////////////////////////////////////////////////////////////////////
@@ -375,4 +381,5 @@ $scaleSize: 0.95;
 .main-panel .zoomOut {
   animation-name: zoomOut95;
 }
+
 </style>

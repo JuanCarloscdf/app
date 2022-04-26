@@ -178,12 +178,11 @@
                     params: { dId: this.config.selectedDevice.dId, variable: this.config.variable, chartTimeAgo: this.config.chartTimeAgo }
                 }
 
-                this.$axios.get("/get-small-charts-data", axiosHeaders)
-                    .then(res => {
+                this.$axios.get("/get-small-charts-data", axiosHeaders).then(res => {
                         
                         this.chartOptions.series[0].data = [];
                         const data = res.data.data;
-                        console.log(res.data)
+                        console.log(res.data);
 
                         data.forEach(element => {
                             var aux = []
@@ -197,7 +196,7 @@
                         this.isMounted = true;
                         
 
-                        return;
+                        return data;
 
                     })
                     .catch(e => {

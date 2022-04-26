@@ -6,13 +6,11 @@ const dataSchema = new Schema({
   userId: { type: String, required: [true] },
   dId: { type: String, required: [true] },
   variable: { type: String, required: [true] },
-  value: { type: Number },
-  lat: { type: Number },
-  lng: { type: Number },
+  position: { type: Object, required: [true] },
   time: { type: Number, required: [true] }
 });
 
 // Convertir a modelo
-const Data = mongoose.model("Data", dataSchema);
+const Gpsdata = mongoose.model("Gpsdata", dataSchema);
 
-export default Data;
+export default Gpsdata;

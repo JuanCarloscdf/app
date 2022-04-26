@@ -11,6 +11,7 @@ import EmqxAuthRule from "../models/emqx_auth.js";
 import Notification from "../models/notifications.js";
 import AlarmRule from "../models/emqx_alarm_rule.js";
 import Template from "../models/template.js";
+import Gpsdata from "../models/gpsdata.js";
 
 var client;
 
@@ -93,6 +94,8 @@ router.post("/saver-webhook", async (req, res) => {
         dId: dId,
         variable: variable,
         value: data.payload.value,
+        lat:data.payload.lat,
+        lng:data.payload.lng,
         time: Date.now()
       });
       console.log("Data created");
@@ -104,6 +107,7 @@ router.post("/saver-webhook", async (req, res) => {
     res.sendStatus(200);
   }
 });
+
 
 //ALARMS WEBHOOK
 router.post("/alarm-webhook", async (req, res) => {

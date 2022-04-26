@@ -32,7 +32,7 @@
         </template>
         <template v-else>
           <i :class="link.icon"></i>
-          <p>{{ link.name }}</p>
+          <p style="color:black">{{ link.name }}</p>
         </template>
       </component>
     </slot>

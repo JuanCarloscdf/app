@@ -44,7 +44,6 @@ export default{
     data(){
         return{
             position:{lat:-13.519920, lng:-68.112460},
-
             auxPosition:{ position:{lat:-13.519920, lng:-68.112460}},
             markers:[
                 {position:{lat:-13.519920, lng:-68.112460}},
@@ -59,12 +58,11 @@ export default{
          
             
     },
-
 mounted(){
-
     const topic = this.config.userId + "/" +this.config.selectedDevice.dId + "/" + this.config.variable+"/sdata";
     console.log(topic+"     este es el topico");
     this.$nuxt.$on(topic, this.processReceivedDatas);
+    this.getGpsData();
 
 },
 beforeDestroy(){
@@ -80,12 +78,54 @@ methods:{
         this.auxPosition.position=data;
         const { ...auxCopy} = this.auxPosition;
         this.markers.push(auxCopy);
+        console.log(this.markers);
         } catch (error) {
         console.log(error);    
         }
        
-    }
+    },
+    getGpsData() {
+    const axiosHeaders = {
+         headers: {
+            token: $nuxt.$store.state.auth.token,
+        },
+         params: { dId: this.config.selectedDevice.dId, variable: this.config.variable, chartTimeAgo: 172800000 }
+        }
+
+        this.$axios.get("/get-small-charts-data", axiosHeaders).then(res => {
+                        
+                        this.markers= [];
+                        const data = res.data.data;
+                        console.log(res.data);
+
+                        data.forEach(element => {
+                            this.auxPosition = {
+                                position:{
+                                    lat:'',
+                                    lng:''
+                                }
+                            };
+                            this.auxPosition.position.lat=element.lat;
+                            this.auxPosition.position.lng=element.lng;
+                            
+                            const { ...auxCopy} = this.auxPosition;
+                            this.markers.push(auxCopy);
+                        });
+                        console.log(this.markers);
+                        this.isMounted = true;
+                        
+
+                        return data;
+
+                    })
+                    .catch(e => {
+
+                        console.log(e)
+                        return;
+
+                    });
+
+            },
 },
 }
-
 </script>
