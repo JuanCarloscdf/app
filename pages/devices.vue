@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 20px">
     <!-- FORM ADD DEVICE -->
     <div class="row">
       <!-- <Json :value="$store.state.selectedDevice"></Json> -->
@@ -136,8 +136,8 @@
         </el-table>
       </card>
     </div>
-    <Json :value="$store.state.selectedDevice"></Json> 
-    <Json :value="$store.state.devices"></Json> 
+    <!-- <Json :value="$store.state.selectedDevice"></Json> 
+    <Json :value="$store.state.devices"></Json>  -->
   </div>
 </template>
 

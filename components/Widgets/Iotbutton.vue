@@ -1,5 +1,5 @@
 <template>
-  <card>
+  <card >
     <div slot="header">
       <h4 class="card-title">
         {{ config.selectedDevice.name }} - {{ config.variableFullName }}
@@ -12,8 +12,8 @@
       style="font-size: 30px"
     ></i>
 
-    <base-button  @click="sendValue()" :type="config.class" class="mb-3 pull-right" size="lg">{{config.text}}</base-button>
-
+    
+    <base-button  @click="sendValue()" simple :type="config.class" class="mb-3 pull-right">{{config.text}}</base-button>
   </card>
 </template>
 

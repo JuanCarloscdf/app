@@ -1,7 +1,8 @@
 
 <template>
-  <div>
+  <div style="padding: 20px" >
     <!-- WIDGET CONFIGURATOR -->
+   
     <div class="row">
       <card>
         <div slot="header">
@@ -21,7 +22,7 @@
               <el-option
                 class="text-dark"
                 value="numberchart"
-                label="Grafica INPUT <-"
+                label="Grafica de lineas"
               >
               </el-option>
               <el-option
@@ -45,6 +46,28 @@
                 value="button"
                 label="Boton OUTPUT ->"
               ></el-option>
+              <el-option
+                class="text-dark"
+                value="chartjs"
+                label="ChartJs INPUT ->"
+              ></el-option>
+              <el-option
+                class="text-dark"
+                value="actbool"
+                label="interlocutor ->"
+              ></el-option>
+
+              <el-option
+                class="text-dark"
+                value="iotbar"
+                label="filbar INPUT"
+              ></el-option>
+              <el-option
+                class="text-dark"
+                value="iotbarchart"
+                label="Grafica de barras"
+              ></el-option>
+              
             </el-select>
 
             <br />
@@ -183,7 +206,170 @@
 
               <br /><br />
             </div>
+            <!-- BAR CHART TYPE -->
+            <div v-if="widgetType == 'iotbarchart'">
+              <base-input
+                v-model="IotBarChartConfig.variableFullName"
+                label="Nombre de la variable"
+                type="text"
+              >
+              </base-input>
 
+              <base-input v-model="IotBarChartConfig.unit" 
+              label="Unidad" 
+              type="text">
+              </base-input>
+
+              <base-input
+                v-model.number="IotBarChartConfig.variableSendFreq"
+                label="Frecuencia de envio de datos(s)"
+                type="number"
+              ></base-input>
+
+              <br />
+
+              <base-input
+                v-model.number="IotBarChartConfig.chartTimeAgo"
+                label="Tiempo de observaciòn (min)"
+                type="number"
+              ></base-input>
+              <el-select
+                v-model="IotBarChartConfig.column"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-dark"
+                  value="col-3"
+                  label="col-3"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-6"
+                  label="col-6"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-12"
+                  label="col-12"
+                ></el-option>
+              </el-select>
+
+              <br /><br />
+            </div>
+            <!-- CHARTJS TYPE -->
+            <div v-if="widgetType == 'chartjs'">
+              <base-input
+                v-model="cjConfig.variableFullName"
+                label="Nombre de la variable 1"
+                type="text"
+              >
+              </base-input>
+                <base-input v-model="cjConfig.unit" label="Unidad 1" type="text">
+              </base-input>
+              <base-input
+                v-model="cjConfig.variableFullName2"
+                label="Nombre de la variable 2"
+                type="text"
+              >
+              </base-input>
+
+            
+              <base-input v-model="cjConfig.unit2" label="Unidad 2" type="text">
+              </base-input>
+
+              <base-input
+                v-model.number="cjConfig.decimalPlaces"
+                label="Numero de decimales"
+                type="number"
+              >
+              </base-input>
+
+              <base-input
+                v-model="cjConfig.icon"
+                label="Icono"
+                type="text"
+              ></base-input>
+
+              <br />
+
+              <base-input
+                v-model.number="cjConfig.variableSendFreq"
+                label="Frecuencia de envio de datos(s)"
+                type="number"
+              ></base-input>
+
+              <br />
+
+              <base-input
+                v-model.number="cjConfig.chartTimeAgo"
+                label="Tiempo de observaciòn (min)"
+                type="number"
+              ></base-input>
+
+              <br />
+
+              <el-select
+                v-model="cjConfig.column"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-dark"
+                  value="col-3"
+                  label="col-3"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-4"
+                  label="col-4"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-5"
+                  label="col-5"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-6"
+                  label="col-6"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-7"
+                  label="col-7"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-8"
+                  label="col-8"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-9"
+                  label="col-9"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-10"
+                  label="col-10"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-11"
+                  label="col-11"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-12"
+                  label="col-12"
+                ></el-option>
+              </el-select>
+
+              <br /><br />
+            </div>
             <!-- FORM SWITCH TYPE -->
             <div v-if="widgetType == 'switch'">
               <base-input
@@ -452,7 +638,7 @@
                 ></el-option>
               </el-select>
 
-              <br /><br />
+              <br /><br />chartjs
             </div>
 
             <!-- FORM INDICATOR TYPE -->
@@ -571,6 +757,161 @@
 
               <br /><br />
             </div>
+            <!-- FORM IOTBAR TYPE -->
+            <div v-if="widgetType == 'iotbar'">
+
+              <base-input
+                v-model="iotBarConfig.variableFullName"
+                label="Variable"
+                type="text"
+              >
+              </base-input>
+              <base-input
+                v-model="iotBarConfig.max"
+                label="Valor màximo"
+                type="number"
+              >
+              </base-input>
+
+              <base-input
+                v-model="iotBarConfig.unit"
+                label="unidad"
+                type="text"
+              >
+              </base-input>
+
+              <br />
+
+              <base-input
+                v-model="iotBarConfig.variableSendFreq"
+                label="Frecuencia de envio"
+                type="text"
+              ></base-input>
+
+              <br />
+
+              <el-select
+                v-model="iotBarConfig.column"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-dark"
+                  value="col-3"
+                  label="col-3"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-6"
+                  label="col-6"
+                ></el-option>
+              </el-select>
+
+              <br /><br />
+            </div>
+            <!-- FORM actbool TYPE -->
+            <div v-if="widgetType == 'actbool'">
+
+              <base-input
+                v-model="iotActBoolConfig.variableFullName"
+                label="Variable"
+                type="text"
+              >
+              </base-input>
+
+              <base-input
+                v-model="iotActBoolConfig.icon"
+                label="Icono"
+                type="text"
+              ></base-input>
+
+              <base-input
+                v-model="iotActBoolConfig.umbral"
+                label="umbral y condiciòn"
+                type="number"
+              ></base-input>
+              
+              <el-select
+                v-model="iotActBoolConfig.condition"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option class="text-dark" value="igual" label="igual"></el-option>
+                <el-option class="text-dark" value="mayor" label="mayor "></el-option>
+                <el-option class="text-dark" value="mayorigual" label="mayor igual"></el-option>
+                <el-option class="text-dark" value="menor" label="menor"></el-option>
+                <el-option class="text-dark" value="menorigual" label="menor igual"></el-option>
+                <el-option class="text-dark" value="distinto" label="distinto"></el-option>
+                
+              </el-select>
+
+              <base-input
+                v-model="iotActBoolConfig.message"
+                label="mensaje"
+                type="text"
+              >
+              </base-input>
+
+              <base-input
+                v-model="iotActBoolConfig.variableSendFreq"
+                label="Frecuencia de envio"
+                type="text"
+              ></base-input>
+
+              <br />
+
+              <el-select
+                v-model="iotActBoolConfig.class"
+                class="select-success"
+                placeholder="Select Class"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-success"
+                  value="success"
+                  label="Success"
+                ></el-option>
+                <el-option
+                  class="text-primary"
+                  value="primary"
+                  label="Primary"
+                ></el-option>
+                <el-option
+                  class="text-warning"
+                  value="warning"
+                  label="Warning"
+                ></el-option>
+                <el-option
+                  class="text-danger"
+                  value="danger"
+                  label="Danger"
+                ></el-option>
+              </el-select>
+
+              <br /><br /><br />
+
+              <el-select
+                v-model="iotActBoolConfig.column"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-dark"
+                  value="col-3"
+                  label="pequeño"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-6"
+                  label="mediano"
+                ></el-option>
+              </el-select>
+
+              <br /><br />
+            </div>
           </div>
 
           <!-- WIDGET PREVIEW -->
@@ -595,6 +936,22 @@
               v-if="widgetType == 'mapa'"
               :config="iotMap"
             ></Map>
+            <ChartJs
+              v-if="widgetType == 'chartjs'"
+              :config="cjConfig"
+            ></ChartJs>
+            <ActBool
+              v-if="widgetType == 'actbool'"
+              :config="iotActBoolConfig"
+            ></ActBool>
+            <IotBar
+              v-if="widgetType == 'iotbar'"
+              :config="iotBarConfig"
+            ></IotBar>
+            <IotBarChart
+              v-if="widgetType == 'iotbarchart'"
+              :config="IotBarChartConfig"
+            ></IotBarChart>
           </div>
         </div>
 
@@ -652,6 +1009,22 @@
           v-if="widget.widget == 'mapa'"
           :config="widget"
         ></Map>
+        <ChartJs
+          v-if="widget.widget == 'chartjs'"
+          :config="widget"
+        ></ChartJs>
+        <ActBool
+          v-if="widget.widget == 'actbool'"
+          :config="widget"
+        ></ActBool>
+        <IotBar
+          v-if="widget.widget == 'iotbar'"
+          :config="widget"
+        ></IotBar>
+        <IotBarChart
+          v-if="widget.widget == 'iotbarchart'"
+          :config="widget"
+        ></IotBarChart>
       </div>
     </div>
 
@@ -764,14 +1137,16 @@
       </card>
     </div>
 
-    <!-- <Json :value="widgets"></Json>  -->
+    <Json :value="widgets"></Json >   
   </div>
 </template>
 
 <script>
+import LineChart from '../components/LineChart.vue'
 import { Table, TableColumn } from "element-ui";
 import { Select, Option } from "element-ui";
 export default {
+  components: { LineChart },
   middleware: "authenticated",
   components: {
     [Table.name]: Table,
@@ -805,6 +1180,45 @@ export default {
         chartTimeAgo: 60,
         demo: true
       },
+      /* bar chart */
+      IotBarChartConfig: {
+        userId: "sampleuserid",
+        selectedDevice: {
+          name: "ID de dispositivo",
+          dId: "8888"
+        },
+        variableFullName: "temperature",
+        variable: "varname",
+        variableType: "input",
+        variableSendFreq: "30",
+        column: "col-12",
+        widget: "iotbarchart",
+        chartTimeAgo: 60,
+        demo: true
+      },
+      /* chart js */
+      cjConfig: {
+        userId: "sampleuserid",
+        selectedDevice: {
+          name: "ID de dispositivo",
+          dId: "8888"
+        },
+        variableFullName: "temperature",
+        variableFullName2: "temperature",
+        variable: "varname",
+        variableType: "input",
+        variableSendFreq: "30",
+        unit: "Watts",
+        unit2: "Watts",
+        class: "success",
+        column: "col-12",
+        decimalPlaces: 2,
+        widget: "chartjs",
+        icon: "fa-sun",
+        chartTimeAgo: 60,
+        demo: true
+      },
+      /* switch */
       iotSwitchConfig: {
         userId: "userid",
         selectedDevice: {
@@ -819,6 +1233,7 @@ export default {
         icon: "fa-bath",
         column: "col-6"
       },
+      /* indicator */
       iotIndicatorConfig: {
         userId: "userid",
         selectedDevice: {
@@ -834,6 +1249,42 @@ export default {
         icon: "fa-bath",
         column: "col-6"
       },
+      /* iotbar */
+      iotBarConfig: {
+        userId: "userid",
+        selectedDevice: {
+          name: "ID de dispositivo",
+          dId: "8888"
+        },
+        variableFullName: "temperature",
+        variable: "varname",
+        variableType: "input",
+        variableSendFreq: "10",
+        max:19,
+        unit:"$",
+        widget: "iotbar",
+        column: "col-6"
+      },
+      /* actbool */
+      iotActBoolConfig: {
+        userId: "userid",
+        selectedDevice: {
+          name: "ID de dispositivo",
+          dId: "serie"
+        },
+        variableFullName: "temperature",
+        message:"mensaje para el dispositivo",
+        variable: "varname",
+        umbral:"valor umbral",
+        condition:"condicion",
+        variableType: "inputoutput",
+        variableSendFreq: "30",
+        class: "success",
+        widget: "actbool",
+        icon: "fa-bath",
+        column: "col-6"
+      },
+
       configButton: {
         userId: "userid",
         selectedDevice: {
@@ -858,7 +1309,7 @@ export default {
           name: "dId - dispositivo",
           dId: "8888",
         },
-        variableFullName: "ubicación",
+        variableFullName: "ubicacissssón",
         variable: "var1",
         variableType: "input",
         variableSendFreq:"20",
@@ -998,6 +1449,22 @@ export default {
         this.iotMap.variable = this.makeid(10);
         this.widgets.push(JSON.parse(JSON.stringify(this.iotMap)));
       }
+      if (this.widgetType == "chartjs") {
+        this.cjConfig.variable = this.makeid(10);
+        this.widgets.push(JSON.parse(JSON.stringify(this.cjConfig)));
+      }
+      if (this.widgetType == "actbool") {
+        this.iotActBoolConfig.variable = this.makeid(10);
+        this.widgets.push(JSON.parse(JSON.stringify(this.iotActBoolConfig)));
+      }
+      if (this.widgetType == "iotbar") {
+        this.iotBarConfig.variable = this.makeid(10);
+        this.widgets.push(JSON.parse(JSON.stringify(this.iotBarConfig)));
+      }
+      if (this.widgetType == "iotbarchart") {
+        this.IotBarChartConfig.variable = this.makeid(10);
+        this.widgets.push(JSON.parse(JSON.stringify(this.IotBarChartConfig)));
+      }
     },
     //Delete Widget
     deleteWidget(index) {
@@ -1042,5 +1509,6 @@ export default {
         return time;
       },
   }
+
 };
 </script>

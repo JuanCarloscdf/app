@@ -41,6 +41,7 @@ export default {
   plugins: [
     `~/plugins/dashboard-plugin.js`,
     `~/plugins/vue2-google-maps.js`,
+    `~/plugins/vue-chartjs.js`,
   ],
   //autoimport
   components: true,

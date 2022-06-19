@@ -23,7 +23,13 @@ export default {
       validator: val => {
         return val.length > 1;
       }
-    }
+    },
+    watch: {
+      'chartData' (to, from) {
+        this.renderChart(this.chartData, this.options)
+        addData(chart,charData);
+      }
+    },
   },
   data() {
     return {
@@ -46,7 +52,14 @@ export default {
           set.backgroundColor = gradientStroke;
         }
       });
-    }
+    },
+
+    addData(chart, chartData) {
+      chart.chartData.datasets.forEach((dataset) => {
+      dataset.chartData.push(data);
+      });
+      chart.update();
+    },
   },
   mounted() {
     this.$watch(

@@ -76,8 +76,7 @@ export default {
   },
   methods: {
     login() {
-      this.$axios
-        .post("/login", this.user)
+      this.$axios.post("/login", this.user)
         .then(res => {
 
           //success! - Usuario creado.

@@ -11,7 +11,7 @@ import EmqxAuthRule from "../models/emqx_auth.js";
 import Notification from "../models/notifications.js";
 import AlarmRule from "../models/emqx_alarm_rule.js";
 import Template from "../models/template.js";
-import Gpsdata from "../models/gpsdata.js";
+
 
 var client;
 
@@ -21,7 +21,7 @@ var client;
 
 //DEVICE CREDENTIALS WEBHOOK
 router.post("/getdevicecredentials", async (req, res) => {
-  console.log(req.body);
+  /* console.log(req.body); */
 
   const dId = req.body.dId;
 
@@ -81,6 +81,8 @@ router.post("/saver-webhook", async (req, res) => {
     }
 
     const data = req.body;
+   /*  console.log("desde saver webhook");
+    console.log(data); */
 
     const splittedTopic = data.topic.split("/");
     const dId = splittedTopic[1];
@@ -94,8 +96,11 @@ router.post("/saver-webhook", async (req, res) => {
         dId: dId,
         variable: variable,
         value: data.payload.value,
+        value2: data.payload.value2,
         lat:data.payload.lat,
         lng:data.payload.lng,
+        inmsg:data.payload.inmsg,
+        values:data.payload.values,
         time: Date.now()
       });
       console.log("Data created");
@@ -281,7 +286,8 @@ function startMqttClient() {
     protocolId: "MQIsdp",
     protocolVersion: 3,
     clean: true,
-    encoding: "utf8"
+    encoding: "utf8",
+    qos:1,
   };
 
   client = mqtt.connect("mqtt://" + process.env.EMQX_NODE_HOST, options);
@@ -304,13 +310,7 @@ function startMqttClient() {
 
 function sendMqttNotif(notif) {
   const topic = notif.userId + "/dummy-did/dummy-var/notif";
-  const msg =
-    "The rule: when the " +
-    notif.variableFullName +
-    " is " +
-    notif.condition +
-    " than " +
-    notif.value;
+  const msg = " la regla " + notif.variableFullName +" "+ notif.condition + " que " + notif.value + " a sido activada ";
   client.publish(topic, msg);
 }
 

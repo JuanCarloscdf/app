@@ -1,20 +1,87 @@
 <template>
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <notifications></notifications>
+    
+    <side-bar
+     :background-color="sidebarBackground" 
+      short-title="UM"
+      title="UMSA IOT"
+      shadow
+    >
+ 
+     <div class="text-center">
+       <br>
+       <FONT FACE="arial" COLOR="white" SIZE=3>BARRA DE NAVEGACIÒN</font>
+     </div>
 
+      <template slot-scope="props" slot="links">
+        <sidebar-item
+          :link="{
+            name: 'TABLERO',
+            icon: 'tim-icons icon-laptop',
+            path: '/dashboard',
+            style: ''
+          }"
+        >
+        </sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'DISPOSITIVOS',
+            icon: 'tim-icons icon-components',
+            path: '/devices'
+          }"
+        >
+        </sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'ALARMAS',
+            icon: 'tim-icons icon-alert-circle-exc',
+            path: '/alarms'
+          }"
+        >
+        </sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'PLANTILLA',
+            icon: 'tim-icons icon-puzzle-10' ,
+            path: '/templates'
+          }"
+        >
+        </sidebar-item>
+<!--          <sidebar-item
+          :link="{
+            name: 'maps',
+            icon: 'tim-icons icon-settings',
+            path: '/maps'
+          }"
+        >
+        </sidebar-item> -->
+        <sidebar-item
+          :link="{
+            name: 'Lista de Alarmas',
+            icon: 'tim-icons icon-bullet-list-67',
+            path: '/AlarmList'
+          }"
+        >
+        </sidebar-item>
+      </template>
+    </side-bar>
 
     <!--Share plugin (for demo purposes). You can remove it if don't plan on using it-->
-    <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share>
+    <!--<sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share>--> 
 
-    <div style="padding: 20px">
-      <dashboard-navbar></dashboard-navbar><br><br><br>
+    <div class="main-panel" :data="sidebarBackground">
+      <dashboard-navbar></dashboard-navbar>
       <router-view name="header"></router-view>
 
       <div :class="{ content: !isFullScreenRoute }" @click="toggleSidebar">
-        
+        <zoom-center-transition :duration="1000" mode="out-in">
           <!-- your content here -->
           <nuxt></nuxt>
-        
+        </zoom-center-transition>
       </div>
       <content-footer v-if="!isFullScreenRoute"></content-footer>
     </div>

@@ -75,7 +75,7 @@ export default {
   align-items: center;
   justify-content: center;
   /deep/ i {
-    padding: 0 3px;
+    padding: 0 1px;
   }
 }
 </style>

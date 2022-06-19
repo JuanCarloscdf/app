@@ -34,6 +34,22 @@
         v-if="widget.widget == 'mapa'"
         :config="fixWidget(widget)"
       ></Map>
+      <ChartJs
+        v-if="widget.widget == 'chartjs'"
+        :config="fixWidget(widget)"
+      ></ChartJs>
+      <ActBool
+        v-if="widget.widget == 'actbool'"
+        :config="fixWidget(widget)"
+      ></ActBool>
+      <IotBar
+        v-if="widget.widget == 'iotbar'"
+        :config="fixWidget(widget)"
+      ></IotBar>
+      <IotBarChart
+        v-if="widget.widget == 'iotbarchart'"
+        :config="fixWidget(widget)"
+      ></IotBarChart>
     </div>
   </div>
 
@@ -68,6 +84,12 @@ export default {
       widgetCopy.userId = this.$store.state.selectedDevice.userId;
 
       if (widget.widget =="numberchart"){
+        widgetCopy.demo = false;
+      }
+      if (widget.widget =="chartjs"){
+        widgetCopy.demo = false;
+      }
+      if (widget.widget =="iotbarchart"){
         widgetCopy.demo = false;
       }
       

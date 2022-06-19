@@ -7,8 +7,10 @@ const dataSchema = new Schema({
   dId: { type: String, required: [true] },
   variable: { type: String, required: [true] },
   value: { type: Number },
+  value2: { type: Number },
   lat: { type: Number },
   lng: { type: Number },
+  inmsg:{type: String},
   time: { type: Number, required: [true] }
 });
 

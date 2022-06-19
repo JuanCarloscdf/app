@@ -8,7 +8,7 @@
   >
     <span class="progress-badge" v-if="label">{{ label }}</span>
     <div class="progress">
-      <span class="progress-value" v-if="showValue && valuePosition === 'left'"
+      <span class="progress-value" v-if="showValue && valuePosition === 'rigth'"
         >{{ value }}%</span
       >
       <div

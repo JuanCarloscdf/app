@@ -25,7 +25,7 @@
           </el-table-column>
 
         </el-table>
-        <Json :value="$store.state.notifications"></Json> 
+        <!-- <Json :value="$store.state.notifications"></Json>  -->
     </div>  
 </template>
 <script>

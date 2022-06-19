@@ -80,7 +80,7 @@
                         value: this.value
                     }
                 };
-
+                console.log(toSend);
                 $nuxt.$emit('mqtt-sender', toSend);
             }
 

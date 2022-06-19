@@ -2,7 +2,8 @@
   <base-nav
     v-model="showMenu"
     class="navbar-absolute top-navbar"
-    type="white"
+    type="dark"
+    
     :transparent="true"
   >
     <div slot="brand" class="navbar-wrapper">
@@ -10,17 +11,140 @@
         class="navbar-toggle d-inline"
         :class="{ toggled: $sidebar.showSidebar }"
       >
-        <button type="button" class="navbar-toggler" @click="toggleSidebar">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </button>
+       
       </div>
-      <a class="navbar-brand ml-xl-3 ml-5" href="#pablo">IoT UMSA</a>
+      
+   
     </div>
+    <!-- aqui colcaremos el menu desplegable para las pages-->
+
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
+      <el-tooltip
+      content="Realice todas las operaciones para administrar sus dispositivos"
+      effect="dark"
+      :open-delay="300"
+      placement="top">
+        
+        <h6 style="padding: 20px">Operaciones</h6> 
+      </el-tooltip>
+        
       
+     <el-select
+       class="select-success"
+        placeholder="Navegador"
+        v-model="selectedPage"
+     >
+      <el-option value="Tablero">   
+        <el-tooltip content="ultimo paso: ver los dispositivos en funcionamiento"
+             effect="light"
+             :open-delay="300"
+             placement="top">
+            <sidebar-item
+              :link="{
+                name: 'Tablero',
+                path: '/dashboard'
+            }"
+            >   
+            </sidebar-item>
+        </el-tooltip> 
+       </el-option>
+
+       <el-option value="Dispositivos">   
+        <el-tooltip content="tercer paso: asocie una plantilla a un dispositivo "
+             effect="light"
+             :open-delay="300"
+             placement="top">
+            <sidebar-item
+            :link="{
+             name: 'Dispositivos',
+             path: '/devices'
+            }"
+            >
+            </sidebar-item>
+        </el-tooltip> 
+       </el-option>
+
+       <el-option value="Alarmas">
+        <el-tooltip content="segundo paso: asocie una alarma a la variable de alguna de sus herramientas"
+             effect="light"
+             :open-delay="300"
+             placement="top">
+             <sidebar-item
+          :link="{
+            name: 'Alarmas',
+            path: '/alarms'
+          }"
+        >
+        </sidebar-item>
+            
+        </el-tooltip> 
+       </el-option>
+
+       <el-option value="Plantilla">
+         <el-tooltip content="primer paso: seleccione las herramientas necesarias para su proyecto"
+             effect="light"
+             :open-delay="300"
+             placement="top">
+             <sidebar-item
+          :link="{
+            name: 'Plantilla',
+            path: '/templates'
+          }"
+        >
+        </sidebar-item>
+            
+        </el-tooltip>    
+       </el-option>
+
+
+
+       <el-option value="Lista de alarmas">
+         <el-tooltip content="verifique las alarmas generadas para su cuenta"
+             effect="light"
+             :open-delay="300"
+             placement="top">
+             <sidebar-item
+          :link="{
+            name: 'Lista de alarmas',
+            path: '/AlarmList'
+          }"
+        >
+        </sidebar-item>
+            
+        </el-tooltip> 
+         
+       </el-option>
+
+       <el-option value="Exportar Datos">
+         <el-tooltip content="exporte los datos a formato xlsx"
+             effect="light"
+             :open-delay="300"
+             placement="top">
+             <sidebar-item
+          :link="{
+            name: 'Exportar Datos',
+            path: '/getData'
+          }"
+        >
+        </sidebar-item>
+            
+        </el-tooltip> 
+         
+       </el-option>
+      
+
+     </el-select>
+     <el-tooltip
+     content="seleccione un dispositivo creado"
+     effect="dark"
+     :open-delay="300"
+     placement="top"
+     >
+       <h6 style="padding: 20px"> dispositivos</h6>
+     </el-tooltip>
+     
+<!-- aqui colcaremos el menu desplegable para las pages-->
       <el-select
         class="select-success"
         placeholder="Select Device"
@@ -35,6 +159,7 @@
         >
         </el-option>
       </el-select>
+
 
       <base-dropdown
         tag="li"
@@ -68,6 +193,7 @@
 
       </base-dropdown>
 
+
       <base-dropdown
         tag="li"
         :menu-on-right="!$rtl.isRTL"
@@ -88,7 +214,12 @@
         </li> -->
         <div class="dropdown-divider"></div>
         <li class="nav-link">
+           <a href="#" class="nav-item dropdown-item" > Usuario:</a>
+          <a href="#" class="nav-item dropdown-item" > {{$store.state.auth.userData.name}}</a>
+          <a href="#" class="nav-item dropdown-item" > Correo:</a>
+          <a href="#" class="nav-item dropdown-item" >{{$store.state.auth.userData.email}}</a>
           <a @click="logOut()" href="#" class="nav-item dropdown-item">Log out</a>
+          
         </li>
       </base-dropdown>
     </ul>
@@ -98,10 +229,13 @@
 import { CollapseTransition } from "vue2-transitions";
 import { BaseNav, Modal } from "@/components";
 import { Select, Option } from "element-ui";
-
+import SidebarShare from "@/components/Layout/SidebarSharePlugin";
+import {BasePagination} from '@/components'
 export default {
+  
   components: {
     CollapseTransition,
+    BasePagination,
     BaseNav,
     Modal,
     [Option.name]: Option,
@@ -126,7 +260,16 @@ export default {
       showMenu: false,
       searchModalVisible: false,
       searchQuery: "",
-      selectedDevice: null
+      selectedDevice: null,
+      selectedPage: null,
+      defaultPagination:1,
+      pageDirs:[
+        {name:"Tablero",direc:"/template"},
+        {name:"Dispositivos",direc:"/template"},
+        {name:"Alarmas",direc:"/template"},
+        {name:"Plantilla",direc:"/template"},
+        {name:"Lista de Alarmas",direc:"/template"},
+      ]
     };
   },
   mounted() {
@@ -200,6 +343,12 @@ export default {
           console.log(e);
           return;
         });
+
+    },
+    selectPage() {
+      
+      console.log( this.pageDirs[this.selectedPage])
+     
 
     },
     //UNIX A FECHA
