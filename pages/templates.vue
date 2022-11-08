@@ -228,11 +228,11 @@
 
               <br />
 
-              <base-input
+              <!-- <base-input
                 v-model.number="IotBarChartConfig.chartTimeAgo"
                 label="Tiempo de observaciòn (min)"
                 type="number"
-              ></base-input>
+              ></base-input> -->
               <el-select
                 v-model="IotBarChartConfig.column"
                 class="select-success"
@@ -1137,7 +1137,7 @@
       </card>
     </div>
 
-    <Json :value="widgets"></Json >   
+    <!-- <Json :value="widgets"></Json >  -->  
   </div>
 </template>
 
@@ -1167,13 +1167,13 @@ export default {
           name: "ID de dispositivo",
           dId: "8888"
         },
-        variableFullName: "temperature",
+        variableFullName: "temperatura",
         variable: "varname",
         variableType: "input",
         variableSendFreq: "30",
-        unit: "Watts",
+        unit: "ºC",
         class: "success",
-        column: "col-12",
+        column: "col-6",
         decimalPlaces: 2,
         widget: "numberchart",
         icon: "fa-sun",
@@ -1191,7 +1191,7 @@ export default {
         variable: "varname",
         variableType: "input",
         variableSendFreq: "30",
-        column: "col-12",
+        column: "col-6",
         widget: "iotbarchart",
         chartTimeAgo: 60,
         demo: true
@@ -1203,13 +1203,13 @@ export default {
           name: "ID de dispositivo",
           dId: "8888"
         },
-        variableFullName: "temperature",
-        variableFullName2: "temperature",
+        variableFullName: "temperatura",
+        variableFullName2: "humedad",
         variable: "varname",
         variableType: "input",
-        variableSendFreq: "30",
-        unit: "Watts",
-        unit2: "Watts",
+        variableSendFreq: "15",
+        unit: "ºC",
+        unit2: "%",
         class: "success",
         column: "col-12",
         decimalPlaces: 2,
@@ -1230,8 +1230,8 @@ export default {
         variableType: "output",
         class: "danger",
         widget: "switch",
-        icon: "fa-bath",
-        column: "col-6"
+        icon: "fa-lightbulb",
+        column: "col-3"
       },
       /* indicator */
       iotIndicatorConfig: {

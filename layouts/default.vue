@@ -4,7 +4,7 @@
 
 
     <!--Share plugin (for demo purposes). You can remove it if don't plan on using it-->
-    <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share>
+    <!-- <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share> -->
 
     <div style="padding: 20px">
       <dashboard-navbar></dashboard-navbar><br><br><br>
