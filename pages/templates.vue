@@ -8,7 +8,7 @@
         <div slot="header">
           <h4 class="card-title">Herramientas </h4>
         </div>
-
+        
         <div class="row">
           <!-- WIDGET SELECTOR AND FORMS -->
           <div class="col-6">
@@ -72,7 +72,7 @@
 
             <br />
             <br />
-
+          
             <!-- FORMS NUMBER CHART TYPE -->
             <div v-if="widgetType == 'numberchart'">
               <base-input
@@ -155,52 +155,17 @@
                 <el-option
                   class="text-dark"
                   value="col-3"
-                  label="col-3"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-4"
-                  label="col-4"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-5"
-                  label="col-5"
+                  label="pequeño"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-6"
-                  label="col-6"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-7"
-                  label="col-7"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-8"
-                  label="col-8"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-9"
-                  label="col-9"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-10"
-                  label="col-10"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-11"
-                  label="col-11"
+                  label="mediano"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-12"
-                  label="col-12"
+                  label="grande"
                 ></el-option>
               </el-select>
 
@@ -242,17 +207,17 @@
                 <el-option
                   class="text-dark"
                   value="col-3"
-                  label="col-3"
+                  label="pequeño"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-6"
-                  label="col-6"
+                  label="mediano"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-12"
-                  label="col-12"
+                  label="grande"
                 ></el-option>
               </el-select>
 
@@ -319,52 +284,17 @@
                 <el-option
                   class="text-dark"
                   value="col-3"
-                  label="col-3"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-4"
-                  label="col-4"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-5"
-                  label="col-5"
+                  label="pequeño"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-6"
-                  label="col-6"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-7"
-                  label="col-7"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-8"
-                  label="col-8"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-9"
-                  label="col-9"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-10"
-                  label="col-10"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-11"
-                  label="col-11"
+                  label="mediano"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-12"
-                  label="col-12"
+                  label="grande"
                 ></el-option>
               </el-select>
 
@@ -426,52 +356,17 @@
                 <el-option
                   class="text-dark"
                   value="col-3"
-                  label="col-3"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-4"
-                  label="col-4"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-5"
-                  label="col-5"
+                  label="pequeño"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-6"
-                  label="col-6"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-7"
-                  label="col-7"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-8"
-                  label="col-8"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-9"
-                  label="col-9"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-10"
-                  label="col-10"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-11"
-                  label="col-11"
+                  label="mediano"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-12"
-                  label="col-12"
+                  label="grande"
                 ></el-option>
               </el-select>
 
@@ -548,52 +443,17 @@
                 <el-option
                   class="text-dark"
                   value="col-3"
-                  label="col-3"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-4"
-                  label="col-4"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-5"
-                  label="col-5"
+                  label="pequeño"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-6"
-                  label="col-6"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-7"
-                  label="col-7"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-8"
-                  label="col-8"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-9"
-                  label="col-9"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-10"
-                  label="col-10"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-11"
-                  label="col-11"
+                  label="mediano"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-12"
-                  label="col-12"
+                  label="grande"
                 ></el-option>
               </el-select>
 
@@ -706,52 +566,17 @@
                 <el-option
                   class="text-dark"
                   value="col-3"
-                  label="col-3"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-4"
-                  label="col-4"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-5"
-                  label="col-5"
+                  label="pequeño"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-6"
-                  label="col-6"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-7"
-                  label="col-7"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-8"
-                  label="col-8"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-9"
-                  label="col-9"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-10"
-                  label="col-10"
-                ></el-option>
-                <el-option
-                  class="text-dark"
-                  value="col-11"
-                  label="col-11"
+                  label="mediano"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-12"
-                  label="col-12"
+                  label="grande"
                 ></el-option>
               </el-select>
 
@@ -799,12 +624,17 @@
                 <el-option
                   class="text-dark"
                   value="col-3"
-                  label="col-3"
+                  label="pequeño"
                 ></el-option>
                 <el-option
                   class="text-dark"
                   value="col-6"
-                  label="col-6"
+                  label="mediano"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-12"
+                  label="grande"
                 ></el-option>
               </el-select>
 
@@ -915,7 +745,7 @@
           </div>
 
           <!-- WIDGET PREVIEW -->
-          <div class="col-6">
+          <div class="col-6" >
             <Rtnumberchart
               v-if="widgetType == 'numberchart'"
               :config="ncConfig"
@@ -1137,7 +967,7 @@
       </card>
     </div>
 
-    <!-- <Json :value="widgets"></Json >  -->  
+    <!-- <Json :value="widgets"></Json >   -->  
   </div>
 </template>
 
@@ -1170,14 +1000,14 @@ export default {
         variableFullName: "temperatura",
         variable: "varname",
         variableType: "input",
-        variableSendFreq: "30",
+        variableSendFreq: "10",
         unit: "ºC",
         class: "success",
         column: "col-6",
         decimalPlaces: 2,
         widget: "numberchart",
-        icon: "fa-sun",
-        chartTimeAgo: 60,
+        icon: "fa-thermometer",
+        chartTimeAgo: 12000,
         demo: true
       },
       /* bar chart */
@@ -1187,10 +1017,10 @@ export default {
           name: "ID de dispositivo",
           dId: "8888"
         },
-        variableFullName: "temperature",
+        variableFullName: "temperatura",
         variable: "varname",
         variableType: "input",
-        variableSendFreq: "30",
+        variableSendFreq: "25",
         column: "col-6",
         widget: "iotbarchart",
         chartTimeAgo: 60,
@@ -1214,8 +1044,8 @@ export default {
         column: "col-12",
         decimalPlaces: 2,
         widget: "chartjs",
-        icon: "fa-sun",
-        chartTimeAgo: 60,
+        icon: "fa-home",
+        chartTimeAgo: 12000,
         demo: true
       },
       /* switch */
@@ -1230,7 +1060,7 @@ export default {
         variableType: "output",
         class: "danger",
         widget: "switch",
-        icon: "fa-lightbulb",
+        icon: "fa-door-open",
         column: "col-3"
       },
       /* indicator */
@@ -1240,13 +1070,13 @@ export default {
           name: "ID de dispositivo",
           dId: "8888"
         },
-        variableFullName: "temperature",
+        variableFullName: "foco",
         variable: "varname",
         variableType: "input",
-        variableSendFreq: "30",
+        variableSendFreq: "10",
         class: "success",
         widget: "indicator",
-        icon: "fa-bath",
+        icon: "fa-lightbulb",
         column: "col-6"
       },
       /* iotbar */
@@ -1256,12 +1086,12 @@ export default {
           name: "ID de dispositivo",
           dId: "8888"
         },
-        variableFullName: "temperature",
+        variableFullName: "Aula 305",
         variable: "varname",
         variableType: "input",
         variableSendFreq: "10",
-        max:19,
-        unit:"$",
+        max:130,
+        unit:"Alumnos",
         widget: "iotbar",
         column: "col-6"
       },
@@ -1272,19 +1102,19 @@ export default {
           name: "ID de dispositivo",
           dId: "serie"
         },
-        variableFullName: "temperature",
+        variableFullName: "temperatura",
         message:"mensaje para el dispositivo",
         variable: "varname",
         umbral:"valor umbral",
         condition:"condicion",
         variableType: "inputoutput",
-        variableSendFreq: "30",
+        variableSendFreq: "8",
         class: "success",
         widget: "actbool",
-        icon: "fa-bath",
+        icon: "fa-car",
         column: "col-6"
       },
-
+      /* buttom */
       configButton: {
         userId: "userid",
         selectedDevice: {
@@ -1294,11 +1124,11 @@ export default {
           templateId: "984237562348756ldksjfh",
           saverRule: false
         },
-        variableFullName: "Pump",
+        variableFullName: "Foco Sala",
         variable: "var1",
         variableType: "output",
-        icon: "fa-sun",
-        column: "col-4",
+        icon: "fa-lightbulb",
+        column: "col-3",
         widget: "button",
         class: "danger",
         message: "string"
